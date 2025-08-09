@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello GitHub Pages</title>
+  <title>Hello GitHub Pages - Interactive</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       padding: 50px;
+      transition: background 0.5s ease;
       background: linear-gradient(to right, #a8edea, #fed6e3);
     }
     h1 {
@@ -26,16 +27,40 @@
       color: white;
       text-decoration: none;
       border-radius: 5px;
+      cursor: pointer;
     }
     .button:hover {
       background: #555;
     }
+    .fade-in {
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
-  <h1>🚀 Hello GitHub Pages!</h1>
-  <p>これはサンプルの静的サイトです。</p>
-  <a href="https://github.com/" class="button">GitHubを開く</a>
+  <h1 class="fade-in">🚀 Hello GitHub Pages!</h1>
+  <p>ボタンを押すと背景色が変わります。</p>
+  <div class="button" id="colorBtn">背景色を変える</div>
+
+  <script>
+    const colors = [
+      "linear-gradient(to right, #ffecd2, #fcb69f)",
+      "linear-gradient(to right, #a1c4fd, #c2e9fb)",
+      "linear-gradient(to right, #d4fc79, #96e6a1)",
+      "linear-gradient(to right, #84fab0, #8fd3f4)",
+      "linear-gradient(to right, #a8edea, #fed6e3)"
+    ];
+    let current = 0;
+
+    document.getElementById("colorBtn").addEventListener("click", () => {
+      current = (current + 1) % colors.length;
+      document.body.style.background = colors[current];
+    });
+  </script>
 </body>
 </html>
 
